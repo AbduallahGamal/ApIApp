@@ -60,6 +60,7 @@ class cellTableView: UITableViewCell{
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblTopLevelDomain: UILabel!
     @IBOutlet weak var lblTranslations: UILabel!
+    @IBOutlet weak var lblLanguages: UILabel!
     @IBOutlet weak var imageFlag: UIImageView!
 }
 
@@ -78,6 +79,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         cell.lblName.text = lan.name
         cell.lblTopLevelDomain.text = lan.topLevelDomain?[0]
         cell.lblTranslations.text = lan.translations.fa
+        cell.imageFlag.image = UIImage(named: "0002")
         
         return cell
     }
@@ -93,7 +95,6 @@ struct LanguagesModel: Codable {
     
     var name: String?
     var topLevelDomain: [String]?
-    var borders: [String]?
     var translations: Trans
 }
 
@@ -108,3 +109,4 @@ struct Trans: Codable{
     var hr: String?
     var fa: String?
 }
+
