@@ -10,21 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //MARK: Porperties
+    
     @IBOutlet weak var tableView: UITableView!
     var ListLanguages: [LanguagesModel] = []
     var cellId = "tableCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        //tableView.register(cellTableView.self, forCellReuseIdentifier: cellId)
-        tableView.dataSource = self
-        // static data
-//        ListLanguages = [LanguagesModel(name: "Arabic", code: "1111"),
-//                         LanguagesModel(name: "Arabic", code: "1111"),
-//                         LanguagesModel(name: "", code: "1111")]
-//        tableView.reloadData()
         
+        tableView.dataSource = self
         getDataFromServer()
     }
     
@@ -70,6 +65,8 @@ class cellTableView: UITableViewCell{
     @IBOutlet weak var lblBorders: UILabel!
 }
 
+//MARK:- Handlers
+
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,18 +88,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
 }
 
+//MARK:- Model
+
 struct LanguagesModel: Codable {
     
     var name: String?
     var topLevelDomain: [String]?
     var borders: [String]?
-    var languages: langg
+    //var languages: langg
 }
 
-struct langg: Codable{
-    
-    var iso639_1: String?
-    var iso639_2: String?
-    var name: String?
-    var nativeName: String?
-}
+//struct langg: Codable{
+//
+//    var iso639_1: String?
+//    var iso639_2: String?
+//    var name: String?
+//    var nativeName: String?
+//}
