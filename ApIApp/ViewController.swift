@@ -43,9 +43,7 @@ class ViewController: UIViewController {
                 let jsonDecoder = JSONDecoder()
                 let jsonData = try jsonDecoder.decode([LanguagesModel].self, from: data)
                 self.ListLanguages = jsonData
-                
-                print(jsonData)
-                
+                                
                 DispatchQueue.main.sync {
                     self.tableView.reloadData()
                 }
