@@ -43,7 +43,7 @@ class ViewController: UIViewController {
                 let jsonDecoder = JSONDecoder()
                 let jsonData = try jsonDecoder.decode([LanguagesModel].self, from: data)
                 self.ListLanguages = jsonData
-                                
+                
                 DispatchQueue.main.sync {
                     self.tableView.reloadData()
                 }
@@ -59,8 +59,8 @@ class ViewController: UIViewController {
 class cellTableView: UITableViewCell{
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblTopLevelDomain: UILabel!
-
-    @IBOutlet weak var lblBorders: UILabel!
+    @IBOutlet weak var lblTranslations: UILabel!
+    @IBOutlet weak var imageFlag: UIImageView!
 }
 
 //MARK:- Handlers
@@ -77,7 +77,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let lan = ListLanguages[indexPath.row]
         cell.lblName.text = lan.name
         cell.lblTopLevelDomain.text = lan.topLevelDomain?[0]
-      
+        cell.lblTranslations.text = lan.translations.fa
+        
         return cell
     }
     
@@ -93,13 +94,17 @@ struct LanguagesModel: Codable {
     var name: String?
     var topLevelDomain: [String]?
     var borders: [String]?
-    //var languages: langg
+    var translations: Trans
 }
 
-//struct langg: Codable{
-//
-//    var iso639_1: String?
-//    var iso639_2: String?
-//    var name: String?
-//    var nativeName: String?
-//}
+struct Trans: Codable{
+    var de: String?
+    var es: String?
+    var fr: String?
+    var it: String?
+    var br: String?
+    var pt: String?
+    var nl: String?
+    var hr: String?
+    var fa: String?
+}
