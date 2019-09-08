@@ -15,6 +15,7 @@
 		8A56212E2315EB8100B52E60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A56212C2315EB8100B52E60 /* LaunchScreen.storyboard */; };
 		8A5621392315EB8100B52E60 /* ApIAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5621382315EB8100B52E60 /* ApIAppTests.swift */; };
 		8A5621442315EB8100B52E60 /* ApIAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5621432315EB8100B52E60 /* ApIAppUITests.swift */; };
+		8A6C25B12324726200040F8E /* customView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6C25B02324726200040F8E /* customView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		8A56213F2315EB8100B52E60 /* ApIAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApIAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A5621432315EB8100B52E60 /* ApIAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApIAppUITests.swift; sourceTree = "<group>"; };
 		8A5621452315EB8100B52E60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A6C25B02324726200040F8E /* customView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		8A56211F2315EB8000B52E60 /* ApIApp */ = {
 			isa = PBXGroup;
 			children = (
+				8A6C25B02324726200040F8E /* customView.swift */,
 				8A5621202315EB8000B52E60 /* AppDelegate.swift */,
 				8A5621222315EB8000B52E60 /* ViewController.swift */,
 				8A5621242315EB8000B52E60 /* Main.storyboard */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A5621292315EB8000B52E60 /* ApIApp.xcdatamodeld in Sources */,
+				8A6C25B12324726200040F8E /* customView.swift in Sources */,
 				8A5621232315EB8000B52E60 /* ViewController.swift in Sources */,
 				8A5621212315EB8000B52E60 /* AppDelegate.swift in Sources */,
 			);
