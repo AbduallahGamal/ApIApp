@@ -86,6 +86,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="lblBorders" destination="aIh-7b-wqo" id="FaP-k5-0YJ"/>
                                             <outlet property="lblName" destination="dCI-3p-q2T" id="ErD-Md-ej3"/>
                                             <outlet property="lblTopLevelDomain" destination="gNW-gI-UEu" id="lik-Wd-xfJ"/>
                                         </connections>

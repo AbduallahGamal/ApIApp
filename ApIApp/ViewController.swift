@@ -78,10 +78,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! cellTableView
+        
         let lan = ListLanguages[indexPath.row]
         cell.lblName.text = lan.name
         cell.lblTopLevelDomain.text = lan.topLevelDomain?[0]
-       
+      
         return cell
     }
     
@@ -95,5 +96,13 @@ struct LanguagesModel: Codable {
     var name: String?
     var topLevelDomain: [String]?
     var borders: [String]?
+    var languages: langg
 }
 
+struct langg: Codable{
+    
+    var iso639_1: String?
+    var iso639_2: String?
+    var name: String?
+    var nativeName: String?
+}
