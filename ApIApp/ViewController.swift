@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewController: UIViewController {
+    // MARK: Porperties
     
-    //MARK: Porperties
-    
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
     var ListLanguages: [LanguagesModel] = []
     var cellId = "tableCell"
     
@@ -20,26 +20,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.dataSource = self
-        getDataFromServer()
+        getData()
     }
     
-    func getDataFromServer() {
-        let url = URL(string: "https://restcountries.eu/rest/v2/lang/es")!
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-		   if let error = error {
-                print(error)
-		      //self.handleClientError(error)
-		     return
-		   }
-        guard let httpResponse = response as? HTTPURLResponse,
-        (200...299).contains(httpResponse.statusCode) else {
-            print(response as Any)
-		   //self.handleServerError(response)
-		    return
-		}
-          if let data = data{
-		        let string = String(data: data, encoding: .utf8)
-            do{
+    func getData() {
+        NetworkManager().getDataFromServer(path: "lang/es", callback: { data in
+            do {
                 let jsonDecoder = JSONDecoder()
                 let jsonData = try jsonDecoder.decode([LanguagesModel].self, from: data)
                 self.ListLanguages = jsonData
@@ -47,27 +33,24 @@ class ViewController: UIViewController {
                 DispatchQueue.main.sync {
                     self.tableView.reloadData()
                 }
-            }catch{
+            } catch {
                 print(error)
             }
-          }
-        }
-		task.resume()
-		}
+        })
+    }
 }
 
-class cellTableView: UITableViewCell{
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblTopLevelDomain: UILabel!
-    @IBOutlet weak var lblTranslations: UILabel!
-    @IBOutlet weak var lblLanguages: UILabel!
-    @IBOutlet weak var imageFlag: UIImageView!
+class cellTableView: UITableViewCell {
+    @IBOutlet var lblName: UILabel!
+    @IBOutlet var lblTopLevelDomain: UILabel!
+    @IBOutlet var lblTranslations: UILabel!
+    @IBOutlet var lblLanguages: UILabel!
+    @IBOutlet var imageFlag: UIImageView!
 }
 
-//MARK:- Handlers
+// MARK: - Handlers
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource{
-    
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ListLanguages.count
     }
@@ -79,7 +62,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         cell.lblName.text = lan.name
         cell.lblTopLevelDomain.text = lan.topLevelDomain?[0]
         cell.lblTranslations.text = lan.translations.fa
-        cell.imageFlag.image = UIImage(named: "0002")
+        print(lan.flag)
+        cell.imageFlag.kf.setImage(with: URL(string: "https://restcountries.eu/data/ecu.svg"))
+        
         
         return cell
     }
@@ -89,16 +74,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
 }
 
-//MARK:- Model
+// MARK: - Model
 
 struct LanguagesModel: Codable {
-    
     var name: String?
     var topLevelDomain: [String]?
     var translations: Trans
+    var borders:[String]
+    var flag:String// image url
 }
 
-struct Trans: Codable{
+struct Trans: Codable {
     var de: String?
     var es: String?
     var fr: String?
